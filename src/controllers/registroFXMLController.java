@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -313,10 +314,14 @@ public class registroFXMLController implements Initializable {
             login = nickName;
             club.registerMember(name, surname, telephone, nickName, password, tarjeta, svc, avatar);
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
+            Alert alert = new Alert((Alert.AlertType.INFORMATION));
+            alert.setTitle("Usuario registrado");
+            alert.setHeaderText("Usuario registrado correctamente en el sistema");
+            alert.setContentText("A continuación se redirigirá a la pantalla de inicio de sesion");
+            alert.showAndWait();
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
             Parent root = loader.load();
-            menuFXMLController controller = loader.getController();
-            controller.init(login,password);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

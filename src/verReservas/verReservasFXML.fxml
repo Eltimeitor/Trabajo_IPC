@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0fff0;" stylesheets="@../reserva/reservarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.reservasFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="850.0" style="-fx-background-color: #f0fff0;" stylesheets="@../reserva/reservarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.reservasFXMLController">
    <center>
       <VBox prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,37 +46,55 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 1" />
-                        <ListView fx:id="lvPista1" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista1" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 2" />
-                        <ListView fx:id="lvPista2" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista2" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 3" />
-                        <ListView fx:id="lvPista3" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista3" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="243.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 4" />
-                        <ListView fx:id="lvPista4" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista4" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 5" />
-                        <ListView fx:id="lvPista5" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista5" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 6" />
-                        <ListView fx:id="lvPista6" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista6" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                </children>
