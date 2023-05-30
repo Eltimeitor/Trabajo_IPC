@@ -254,11 +254,14 @@ public class registroFXMLController implements Initializable {
        valido = true;
        }
        else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$")){
-       lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
-       valido = true;
+           lblcontrasena.setText("");
+       }
+       else if(!password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=\\S+$).{6,}$")){
+           lblcontrasena.setText("");
        }
        else {
-           lblcontrasena.setText("");
+           lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
+           valido = true;
        }
         if (txt_telefono.getText().isEmpty()){
        lbltelefono.setText("Campo requerido"); 
