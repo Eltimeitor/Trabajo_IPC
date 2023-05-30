@@ -104,66 +104,12 @@ public class reservasFXMLController implements Initializable {
     
     @FXML
     private void inicializarListView(){
-        
-        List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
-        ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista3 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
-        
-        for(int i = 9 ; i <= 21; i++){
-            reservasPista1.add(i+":00h - "+(i+1)+":00h\nPista libre");
-            reservasPista2.add(i+":00h - "+(i+1)+":00h\nPista libre");
-            reservasPista3.add(i+":00h - "+(i+1)+":00h\nPista libre");
-            reservasPista4.add(i+":00h - "+(i+1)+":00h\nPista libre");
-            reservasPista5.add(i+":00h - "+(i+1)+":00h\nPista libre");
-            reservasPista6.add(i+":00h - "+(i+1)+":00h\nPista libre");
+        if(usuarioReserva.getText().equals("")){
+            inicializarListViewComp();
         }
-        
-        for(int i = 0; i < reservaPista.size();i++){
-            switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
-                case "PISTA1":
-                    reservasPista1.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA2":
-                    reservasPista2.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA3":
-                    reservasPista3.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA4":
-                    reservasPista4.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA5":
-                    reservasPista5.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA6":
-                    reservasPista6.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                default:
-                    System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
-                       
-            }
+        else{
+            buscarPorUsuario();
         }
-        lvPista1.setItems(reservasPista1);
-        lvPista2.setItems(reservasPista2);
-        lvPista3.setItems(reservasPista3);
-        lvPista4.setItems(reservasPista4);
-        lvPista5.setItems(reservasPista5);
-        lvPista6.setItems(reservasPista6);
-        
-        
-    }
-    
-
-    
-    
-    
-    private boolean fechaCorrecta(){
-        //Comprobar que la fecha sea mayor a la actual
-       return false;
     }
     
     public void init(String log, String pass){
@@ -199,10 +145,8 @@ public class reservasFXMLController implements Initializable {
         }
 }
 
-    @FXML
-    private void buscarReservasUsuario(ActionEvent event) {
-        
-    if(club.existsLogin(usuarioReserva.getText())){
+    private void buscarPorUsuario(){
+        if(club.existsLogin(usuarioReserva.getText())){
        
             List<Booking> reservaPista = club.getUserBookings(usuarioReserva.getText());
             ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
@@ -271,6 +215,67 @@ public class reservasFXMLController implements Initializable {
         lvPista5.setItems(reservasPistanoEx);
         lvPista6.setItems(reservasPistanoEx);
     }
+    }
+    
+    @FXML
+    private void buscarReservasUsuario(ActionEvent event) {
+        
+        if(usuarioReserva.getText().equals("")){
+            inicializarListViewComp();
+        }
+        else{
+            buscarPorUsuario();
+        }
+    }
+    private void inicializarListViewComp(){
+        List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
+        ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista3 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
+        
+        for(int i = 9 ; i <= 21; i++){
+            reservasPista1.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista2.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista3.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista4.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista5.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista6.add(i+":00h - "+(i+1)+":00h\nPista libre");
+        }
+        
+        for(int i = 0; i < reservaPista.size();i++){
+            switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
+                case "PISTA1":
+                    reservasPista1.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                case "PISTA2":
+                    reservasPista2.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                case "PISTA3":
+                    reservasPista3.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                case "PISTA4":
+                    reservasPista4.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                case "PISTA5":
+                    reservasPista5.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                case "PISTA6":
+                    reservasPista6.set(reservaPista.get(i).getFromTime().getHour() - 9,reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    break;
+                default:
+                    System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
+                       
+            }
+        }
+        lvPista1.setItems(reservasPista1);
+        lvPista2.setItems(reservasPista2);
+        lvPista3.setItems(reservasPista3);
+        lvPista4.setItems(reservasPista4);
+        lvPista5.setItems(reservasPista5);
+        lvPista6.setItems(reservasPista6);
     }
 
 }
