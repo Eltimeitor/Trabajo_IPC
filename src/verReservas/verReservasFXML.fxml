@@ -46,7 +46,7 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 1" />
-                        <ListView fx:id="lvPista1" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista1" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></ListView>
@@ -55,7 +55,7 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 2" />
-                        <ListView fx:id="lvPista2" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista2" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin></ListView>
@@ -64,7 +64,7 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 3" />
-                        <ListView fx:id="lvPista3" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista3" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin></ListView>
@@ -73,7 +73,7 @@
                   <VBox prefHeight="243.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 4" />
-                        <ListView fx:id="lvPista4" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista4" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin></ListView>
@@ -82,7 +82,7 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 5" />
-                        <ListView fx:id="lvPista5" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista5" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin></ListView>
@@ -91,7 +91,7 @@
                   <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 6" />
-                        <ListView fx:id="lvPista6" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista6" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets left="5.0" />
                            </VBox.margin></ListView>
