@@ -31,26 +31,33 @@
          </children></HBox>
    </top>
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="199.0" prefWidth="498.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagenuser" fitHeight="96.0" fitWidth="93.0" onMouseClicked="#abrirPerfil" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagenuser" fitHeight="96.0" fitWidth="93.0" onMouseClicked="#abrirPerfil" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ImageView>
             <Text fx:id="textouser" onMouseClicked="#abrirPerfil" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="reservas" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#verReservas" prefHeight="47.0" prefWidth="103.0" text="Disponibilidad de las pistas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <HBox.margin>
                         <Insets bottom="20.0" />
                      </HBox.margin></Button>
-                  <Pane prefHeight="47.0" prefWidth="141.0" />
-                  <Button fx:id="reserva" mnemonicParsing="false" onAction="#reservar" prefHeight="0.0" prefWidth="103.0" text="Reservar pista">
-                     <HBox.margin>
-                        <Insets bottom="20.0" />
-                     </HBox.margin></Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="94.0" prefWidth="148.0">
+                     <children>
+                        <Button fx:id="misReservas" mnemonicParsing="false" onAction="#verMisReservas" text="Mis reservas" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="reserva" mnemonicParsing="false" onAction="#reservar" prefHeight="0.0" prefWidth="103.0" text="Reservar pista" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="100.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
                <VBox.margin>
@@ -58,16 +65,9 @@
                </VBox.margin>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets top="55.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
-   <bottom>
-      <VBox alignment="CENTER" prefHeight="125.0" prefWidth="594.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="misReservas" mnemonicParsing="false" onAction="#verMisReservas" text="Mis reservas">
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </Button>
-         </children></VBox>
-   </bottom>
 </BorderPane>
