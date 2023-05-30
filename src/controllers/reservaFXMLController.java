@@ -246,7 +246,7 @@ public class reservaFXMLController implements Initializable {
                 
                 if(dosHoras){
                     
-                    
+                    boolean mas2h2 = false;
                     List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
                         boolean entra = true;
                         String a = hora.getValue().substring(0,2);
@@ -293,10 +293,32 @@ public class reservaFXMLController implements Initializable {
                                 usuarioCancela = true;
                             }
                             
+                    List<Booking> reservaPistaUsuario = club.getUserBookings(login);
+                    List<Booking> reservaPista2 = club.getForDayBookings(picker.getValue());
+                        boolean entra2 = true;
+                        for(Booking b: reservaPista2){
+                            if(b.getFromTime().getHour() == Integer.parseInt(hora.getValue().substring(0,2))&& b.getMember().getNickName().equals(user.getNickName())){
+                                entra2 = false;
+                                break;
+                            }
+                            
+                            if(b.getFromTime().getHour() == Integer.parseInt(hora.getValue().substring(0,2))- 2 && b.belongsToMember(login)&& b.getCourt().getName().equalsIgnoreCase(pista.getValue())){
+                               
+                                    for(Booking ub:reservaPistaUsuario){
+                                        if(b.getFromTime().getHour() + 1 == ub.getFromTime().getHour()&& ub.getCourt().getName().equalsIgnoreCase(b.getCourt().getName())){
+                                            mas2h2 = true;
+                                            break;
+                                        }
+                                    
+                                }   
+                            }
+                    
+                            
+                        }
                         }
                         
                         
-                        
+                        if(!mas2h2){
                         if(entra){
                             if(fechaCorrecta() && horaCorrecta()){
                                 try{
@@ -307,7 +329,7 @@ public class reservaFXMLController implements Initializable {
                                     Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                             }
                                 catch(Exception e){
-                                    Alert alert = new Alert((AlertType.INFORMATION));
+                                    Alert alert = new Alert((AlertType.ERROR));
                                     alert.setTitle("Error en la reserva");
                                     alert.setHeaderText("No es posible rereservar 2 horas seguidas");
                                     alert.setContentText("Horario no disponible para dicha reserva");
@@ -317,7 +339,7 @@ public class reservaFXMLController implements Initializable {
                             }
                             else{
                                 if(!usuarioCancela){
-                                    Alert alert = new Alert((AlertType.INFORMATION));
+                                    Alert alert = new Alert((AlertType.ERROR));
                                     alert.setTitle("Error en la reserva");
                                     alert.setHeaderText("No es posible realizar la reserva");
                                     alert.setContentText("No es posible reservar a una hora anterior a la actual\n ni reservar en una fecha anterior a la actual");
@@ -325,8 +347,9 @@ public class reservaFXMLController implements Initializable {
                                 }
                         }
                         }
+                        }
                         else{
-                            Alert alert = new Alert((AlertType.INFORMATION));
+                            Alert alert = new Alert((AlertType.ERROR));
                             alert.setTitle("Error en la reserva");
                             alert.setHeaderText("No es posible rereservar mas de 2 horas seguidas");
                             alert.setContentText("Horario no disponible para dicha reserva");
@@ -347,13 +370,13 @@ public class reservaFXMLController implements Initializable {
                             }
                             
                             if(b.getFromTime().getHour() == Integer.parseInt(hora.getValue().substring(0,2))- 2 && b.belongsToMember(login)&& b.getCourt().getName().equalsIgnoreCase(pista.getValue())){
-                                if(b.getFromTime().getHour() + 1 == Integer.parseInt(hora.getValue().substring(0,2))-1){
+                               
                                     for(Booking ub:reservaPistaUsuario){
-                                        if(b.getFromTime().getHour() + 1 == ub.getFromTime().getHour()){
+                                        if(b.getFromTime().getHour() + 1 == ub.getFromTime().getHour()&& ub.getCourt().getName().equalsIgnoreCase(b.getCourt().getName())){
                                             mas2h = true;
                                             break;
                                         }
-                                    }
+                                    
                                 }   
                             }
                     
@@ -383,7 +406,7 @@ public class reservaFXMLController implements Initializable {
                                     Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                                     }
                                     catch(Exception e){
-                                        Alert alert = new Alert((AlertType.INFORMATION));
+                                        Alert alert = new Alert((AlertType.ERROR));
                                         alert.setTitle("Error en la reserva");
                                         alert.setHeaderText("No es posible realizar la reserva");
                                         alert.setContentText("No es posible reservar si otro usuario ya ha reservadi la pista");
@@ -393,15 +416,15 @@ public class reservaFXMLController implements Initializable {
                                 
                             }
                             else{
-                                Alert alert = new Alert((AlertType.INFORMATION));
+                                Alert alert = new Alert((AlertType.ERROR));
                                 alert.setTitle("Error en la reserva");
-                                alert.setHeaderText("No es posible rereservar 2 horas seguidas");
+                                alert.setHeaderText("No es posible rereservar mas de 2 horas seguidas");
                                 alert.setContentText("Horario no disponible para dicha reserva");
                                 alert.showAndWait();
                             }
                         }
                         else{
-                            Alert alert = new Alert((AlertType.INFORMATION));
+                            Alert alert = new Alert((AlertType.ERROR));
                             alert.setTitle("Error en la reserva");
                             alert.setHeaderText("No es posible realizar la reserva");
                             alert.setContentText("No es posible reservar a una hora anterior a la actual\n ni reservar en una fecha anterior a la actual");
@@ -409,7 +432,7 @@ public class reservaFXMLController implements Initializable {
                         }
                     }
                     else{
-                        Alert alert = new Alert((AlertType.INFORMATION));
+                        Alert alert = new Alert((AlertType.ERROR));
                         alert.setTitle("Error en la reserva");
                         alert.setHeaderText("No es posible realizar la reserva");
                         alert.setContentText("No es posible reservar mas de 2 horas consecutivas\n ni reservar 2 pistas distintas a la misma hora");

@@ -60,9 +60,9 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="190.0" prefWidth="364.0">
+            <HBox alignment="CENTER" prefHeight="230.0" prefWidth="850.0">
                <children>
-                  <VBox prefHeight="230.0" prefWidth="130.0">
+                  <VBox prefHeight="212.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 1" />
                         <ListView fx:id="lvPista1" prefHeight="230.0" prefWidth="100.0">
@@ -74,7 +74,7 @@
                   <VBox prefHeight="200.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 2" />
-                        <ListView fx:id="lvPista2" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista2" prefHeight="230.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets right="5.0" />
                            </VBox.margin></ListView>
@@ -83,7 +83,7 @@
                   <VBox prefHeight="200.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 3" />
-                        <ListView fx:id="lvPista3" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista3" prefHeight="230.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets right="5.0" />
                            </VBox.margin></ListView>
@@ -92,7 +92,7 @@
                   <VBox prefHeight="200.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 4" />
-                        <ListView fx:id="lvPista4" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista4" prefHeight="230.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets right="5.0" />
                            </VBox.margin></ListView>
@@ -101,7 +101,7 @@
                   <VBox prefHeight="200.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 5" />
-                        <ListView fx:id="lvPista5" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lvPista5" prefHeight="230.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets right="5.0" />
                            </VBox.margin></ListView>
@@ -110,7 +110,7 @@
                   <VBox prefHeight="200.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 6" />
-                        <ListView fx:id="lvPista6" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lvPista6" prefHeight="230.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
@@ -125,7 +125,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
          </children>
