@@ -12,12 +12,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0fff0;" stylesheets="@../editar/editarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.perfilFXMLController">
-   <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="imagenuser" fitHeight="104.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
-         </children></HBox>
-   </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -43,6 +37,11 @@
                         <Text fx:id="userSVC" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </VBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="225.0">
+                     <children>
+                        <ImageView fx:id="imagenuser" fitHeight="104.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -71,4 +70,7 @@
    <bottom>
       <Pane prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <Pane prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
