@@ -244,9 +244,16 @@ public class editarFXMLController implements Initializable {
        noValido = true;
        }
        else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$")){
-            lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
-            noValido = true;
+           lblcontrasena.setText("");
        }
+       else if(!password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=\\S+$).{6,}$")){
+           lblcontrasena.setText("");
+       }
+       else {
+           lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
+           noValido = true;
+       }
+       
             if(!password.equals(contraVieja)){
             lblcontrasena.setText("Contrseña incorrecta"); 
             noValido = true;
@@ -255,6 +262,9 @@ public class editarFXMLController implements Initializable {
                 lblcontrasena.setText("");
             }
        if(!txt_contrasenanueva.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$") && !(txt_contrasenanueva.getText().equals(""))){
+           lblcontrasenanueva.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres");
+       }
+       else if(!txt_contrasenanueva.getText().matches("^(?=.*[0-9])(?=.*[A-Z])(?=\\S+$).{6,}$") && !(txt_contrasenanueva.getText().equals(""))){
            lblcontrasenanueva.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres");
        }
        else if(!(txt_contrasenanueva.getText().equals(""))){
@@ -283,7 +293,7 @@ public class editarFXMLController implements Initializable {
            lblnickname.setText("");
        }
         
-        if(!tarjeta.matches("^(?=.*[0-9])(?=\\S+$).{16,}$") && !tarjeta.isEmpty()){
+        if(!tarjeta.matches("^(?=.*[0-9])(?=\\S+$).{16,16}$") && !tarjeta.isEmpty()){
             lbltarjeta.setText("Informacion incorrecta");
             noValido = true;
         }
@@ -299,7 +309,7 @@ public class editarFXMLController implements Initializable {
             else if(tarjeta.isEmpty()){
                 txt_svc.setText("");
             }
-            else if(!txt_svc.getText().matches("^(?=.*[0-9])(?=\\S+$).{3,}$")){
+            else if(!txt_svc.getText().matches("^(?=.*[0-9])(?=\\S+$).{3,3}$")){
                 lblsvc.setText("Informacion incorrecta");
                 noValido = true;
             }
