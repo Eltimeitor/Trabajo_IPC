@@ -201,9 +201,9 @@ public class reservasFXMLController implements Initializable {
 
     @FXML
     private void buscarReservasUsuario(ActionEvent event) {
-        System.out.println("entra");
+        
     if(club.existsLogin(usuarioReserva.getText())){
-        System.out.println("aqui tambin");
+       
             List<Booking> reservaPista = club.getUserBookings(usuarioReserva.getText());
             ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
             ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
@@ -257,6 +257,20 @@ public class reservasFXMLController implements Initializable {
         lvPista5.setItems(reservasPista5);
         lvPista6.setItems(reservasPista6);
         }
+    else{
+        Alert alert = new Alert((AlertType.INFORMATION));
+        alert.setTitle("Usuario no exitente");
+        alert.setHeaderText("Usuario no encontrado en la base de datos");
+        alert.setContentText("Introduzca un nombre distinto");
+        alert.showAndWait();
+        ObservableList<String> reservasPistanoEx = FXCollections.observableArrayList();
+        lvPista1.setItems(reservasPistanoEx);
+        lvPista2.setItems(reservasPistanoEx);
+        lvPista3.setItems(reservasPistanoEx);
+        lvPista4.setItems(reservasPistanoEx);
+        lvPista5.setItems(reservasPistanoEx);
+        lvPista6.setItems(reservasPistanoEx);
+    }
     }
 
 }
