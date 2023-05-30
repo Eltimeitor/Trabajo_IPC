@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +26,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import model.Booking;
 import model.Club;
 import model.ClubDAOException;
@@ -70,7 +73,10 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         picker.setValue(LocalDate.now());
         inicializarHoras();
         inicializarPistas();
-        hora.setValue((LocalTime.now().getHour() + 1)+":00");
+        if(LocalTime.now().getHour()>21 || LocalTime.now().getHour()<9)
+            hora.setValue("9:00");
+        else
+            hora.setValue((LocalTime.now().getHour() + 1)+":00");
         
 
     }    
@@ -81,6 +87,13 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         userController = controller;
         picker.setValue(hora);
         userController.fechaVisible();
+        Stage myStage = (Stage) GoBack.getScene().getWindow();
+        myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    goback();
+                }
+            });
     } 
     
     private void inicializarHoras(){
@@ -108,9 +121,11 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
     
 
     @FXML
-    private void goback(ActionEvent event) {
+    private void goback() {
         Stage myStage = (Stage) GoBack.getScene().getWindow();
         myStage.close();
+        userController.inicializarTableViewUsuario();
+        userController.fechaNoVisible();
     }
     public Stage getMyStage(){
         return (Stage) GoBack.getScene().getWindow();
@@ -123,6 +138,8 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
         LocalTime h = LocalTime.parse(hora.getValue(),dtf);
         userController.eliminarList(picker.getValue(), pista.getValue(),h);
+        userController.inicializarTableViewUsuario();
+        userController.fechaNoVisible();
         Stage myStage = (Stage) GoBack.getScene().getWindow();
         myStage.close();
         

@@ -122,7 +122,11 @@ public class reservaFXMLController implements Initializable {
         picker.setValue(LocalDate.now());
         inicializarHoras();
         inicializarPistas();
-        hora.setValue((LocalTime.now().getHour() + 1)+":00");
+        
+        if(LocalTime.now().getHour()>21 || LocalTime.now().getHour()<9)
+            hora.setValue("9:00");
+        else
+            hora.setValue((LocalTime.now().getHour() + 1)+":00");
         inicializarListView();
         
       

@@ -110,8 +110,7 @@ public class reservasUsuarioFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        picker.setVisible(false);
-        fecha_txt.setVisible(false);
+        fechaNoVisible();
         
     }    
     public void init(String log, String pass, reservasUsuarioFXMLController controller){
@@ -119,7 +118,7 @@ public class reservasUsuarioFXMLController implements Initializable {
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
         thiscontroller = controller;
-       inicializarTableViewUsuario();
+        inicializarTableViewUsuario();
     }
     @FXML
    private void inicializarTableView() {
@@ -150,6 +149,7 @@ public class reservasUsuarioFXMLController implements Initializable {
         pagadaColumn.setCellValueFactory((paidFila)->{return paidFila.getValue().paid;});
     }
   public void inicializarTableViewUsuario() {
+            
 
         List<Booking> reservaPista = club.getUserBookings(user.getNickName());
 
@@ -195,9 +195,6 @@ public class reservasUsuarioFXMLController implements Initializable {
             
             
             if(!(controller.getMyStage().isShowing())){
-                   
-                
-                
                 controller.init(login, contra, thiscontroller,picker.getValue());
                 stage.setResizable(false);
                 stage.show();
@@ -245,14 +242,17 @@ public class reservasUsuarioFXMLController implements Initializable {
                 Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        picker.setVisible(false);
-        fecha_txt.setVisible(false);        
+               
         
         
     }
     public void fechaVisible(){
         picker.setVisible(true);
         fecha_txt.setVisible(true);   
+    }
+    public void fechaNoVisible(){
+        picker.setVisible(false);
+        fecha_txt.setVisible(false);   
     }
     private boolean fechaCorrecta(Booking b){
         LocalDateTime ldt = LocalDateTime.now().minusHours(24);
