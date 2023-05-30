@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,11 +71,17 @@ public class reservasUsuarioFXMLController implements Initializable {
     @FXML
     private TableView<ReservasTabla> ReservasUser;
     @FXML
-    private TableColumn<ReservasTabla, String> PistaColumn;
+    private TableColumn<ReservasTabla, String> pistaColumn;
     @FXML
-    private TableColumn<ReservasTabla, String> DiaColumn;
+    private TableColumn<ReservasTabla, String> diaColumn;
     @FXML
-    private TableColumn<ReservasTabla, String> HoraColumn;
+    private TableColumn<ReservasTabla, String> horaColumn;
+    
+    @FXML
+    private TableColumn<ReservasTabla, String> pagadaColumn;
+    @FXML
+    private Label fecha_txt;
+   
     
     /**
      * Initializes the controller class.
@@ -89,7 +96,7 @@ public class reservasUsuarioFXMLController implements Initializable {
             Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         picker.setValue(LocalDate.now());
-        inicializarTableView(picker.getValue());
+        
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eliminarReserva/eliminarReservaUsuarioFXML.fxml")); 
         Parent root;
@@ -103,8 +110,8 @@ public class reservasUsuarioFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        picker.setVisible(false);
+        fecha_txt.setVisible(false);
         
     }    
     public void init(String log, String pass, reservasUsuarioFXMLController controller){
@@ -112,7 +119,7 @@ public class reservasUsuarioFXMLController implements Initializable {
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
         thiscontroller = controller;
-       inicializarTableView();
+       inicializarTableViewUsuario();
     }
     @FXML
    private void inicializarTableView() {
@@ -137,10 +144,31 @@ public class reservasUsuarioFXMLController implements Initializable {
        
         ReservasUser.setItems(reservasPista1);
         
-        PistaColumn.setCellValueFactory((pistaFila)->{return pistaFila.getValue().pista;});
-        DiaColumn.setCellValueFactory((diaFila)->{return diaFila.getValue().dia;});
-        HoraColumn.setCellValueFactory((horaFila)->{return horaFila.getValue().hora;});
-   
+        pistaColumn.setCellValueFactory((pistaFila)->{return pistaFila.getValue().pista;});
+        diaColumn.setCellValueFactory((diaFila)->{return diaFila.getValue().dia;});
+        horaColumn.setCellValueFactory((horaFila)->{return horaFila.getValue().hora;});
+        pagadaColumn.setCellValueFactory((paidFila)->{return paidFila.getValue().paid;});
+    }
+  public void inicializarTableViewUsuario() {
+
+        List<Booking> reservaPista = club.getUserBookings(user.getNickName());
+
+        ObservableList<ReservasTabla> reservasPista1 = FXCollections.observableArrayList();
+       
+        
+        for(int i = reservaPista.size()-1; i > reservaPista.size()-11&&i>=0;i--){     
+            reservasPista1.add(new ReservasTabla(reservaPista.get(i)));
+
+        } 
+                      
+           
+       
+        ReservasUser.setItems(reservasPista1);
+        
+        pistaColumn.setCellValueFactory((pistaFila)->{return pistaFila.getValue().pista;});
+        diaColumn.setCellValueFactory((diaFila)->{return diaFila.getValue().dia;});
+        horaColumn.setCellValueFactory((horaFila)->{return horaFila.getValue().hora;});
+        pagadaColumn.setCellValueFactory((paidFila)->{return paidFila.getValue().paid;});
     }
 
     @FXML
@@ -212,16 +240,20 @@ public class reservasUsuarioFXMLController implements Initializable {
             
             try {
                 club.removeBooking(aux);
-                inicializarTableView(picker.getValue());
-            } catch (ClubDAOException ex) {
+                inicializarTableViewUsuario();
+        } catch (ClubDAOException ex) {
                 Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-                
+        picker.setVisible(false);
+        fecha_txt.setVisible(false);        
         
         
     }
-    
+    public void fechaVisible(){
+        picker.setVisible(true);
+        fecha_txt.setVisible(true);   
+    }
     private boolean fechaCorrecta(Booking b){
         LocalDateTime ldt = LocalDateTime.now().minusHours(24);
         return ldt.toLocalDate().compareTo(b.getMadeForDay()) <= 0;       

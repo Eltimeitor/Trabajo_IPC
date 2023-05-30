@@ -71,7 +71,7 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         inicializarHoras();
         inicializarPistas();
         hora.setValue((LocalTime.now().getHour() + 1)+":00");
-      
+        
 
     }    
     public void init(String log, String pass, reservasUsuarioFXMLController controller,LocalDate hora){
@@ -80,7 +80,7 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         user = club.getMemberByCredentials(login, contra);
         userController = controller;
         picker.setValue(hora);
-        
+        userController.fechaVisible();
     } 
     
     private void inicializarHoras(){
@@ -123,7 +123,8 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
         LocalTime h = LocalTime.parse(hora.getValue(),dtf);
         userController.eliminarList(picker.getValue(), pista.getValue(),h);
-        
+        Stage myStage = (Stage) GoBack.getScene().getWindow();
+        myStage.close();
         
     }
 
