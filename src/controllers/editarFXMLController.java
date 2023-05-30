@@ -357,16 +357,7 @@ public class editarFXMLController implements Initializable {
             Stage myStage = (Stage) registrar.getScene().getWindow();
             myStage.close();
         }
-        else{
-            if(club.existsLogin(txt_nickname.getText())&& !(txt_nickname.getText().equals(login))){
-                Alert alert = new Alert((Alert.AlertType.INFORMATION));
-                alert.setTitle("Error al editar");
-                alert.setHeaderText("No es posible realizar los cambios");
-                alert.setContentText("Nikname ya registrado \n " + "Por favor introduzca un Nickname distinto");
-                alert.showAndWait();
-                
-            }
-        }    
+            
             /*
             miembros = club.getMembers();
             club.setInitialData();

@@ -317,7 +317,7 @@ public class registroFXMLController implements Initializable {
             Alert alert = new Alert((Alert.AlertType.INFORMATION));
             alert.setTitle("Usuario registrado");
             alert.setHeaderText("Usuario registrado correctamente en el sistema");
-            alert.setContentText("A continuación se redirigirá a la pantalla de inicio de sesion");
+            alert.setContentText("A continuación se redirigirá a la pantalla de inicio de sesión\n para reservar pista deberá iniciar sesión");
             alert.showAndWait();
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
