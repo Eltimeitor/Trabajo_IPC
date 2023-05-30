@@ -258,7 +258,7 @@ public class reservasFXMLController implements Initializable {
         lvPista6.setItems(reservasPista6);
         }
     else{
-        Alert alert = new Alert((AlertType.INFORMATION));
+        Alert alert = new Alert((AlertType.ERROR));
         alert.setTitle("Usuario no exitente");
         alert.setHeaderText("Usuario no encontrado en la base de datos");
         alert.setContentText("Introduzca un nombre distinto");

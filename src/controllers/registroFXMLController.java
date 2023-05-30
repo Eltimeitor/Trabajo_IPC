@@ -275,13 +275,18 @@ public class registroFXMLController implements Initializable {
            lbltelefono.setText("");
        }
         if (txt_nickname.getText().isEmpty()){
-       lblnickname.setText("Campo requerido"); 
-       valido = true;
-       }else {
+            lblnickname.setText("Campo requerido"); 
+            valido = true;
+        }else if(!(txt_nickname.getText().replaceAll(" ","").equals(txt_nickname.getText()))){
+            lblnickname.setText("El NickName no puede contener espacios"); 
+            valido = true;
+        }
+        else {
            lblnickname.setText("");
-       }
+            
+        }
         
-        if(!tarjeta.matches("^(?=.*[0-9])(?=\\S+$).{16,}$") && !tarjeta.isEmpty()){
+        if(!tarjeta.matches("^(?=.*[0-9])(?=\\S+$).{16,16}$") && !tarjeta.isEmpty()){
             lbltarjeta.setText("Informacion incorrecta");
             valido = true;
         }
@@ -297,7 +302,7 @@ public class registroFXMLController implements Initializable {
             else if(tarjeta.isEmpty()){
                 txt_svc.setText("");
             }
-            else if(!txt_svc.getText().matches("^(?=.*[0-9])(?=\\S+$).{3,}$")){
+            else if(!txt_svc.getText().matches("^(?=.*[0-9])(?=\\S+$).{3,3}$")){
                 lblsvc.setText("Informacion incorrecta");
                 valido = true;
             }
