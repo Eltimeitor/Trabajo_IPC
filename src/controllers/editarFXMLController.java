@@ -94,6 +94,7 @@ public class editarFXMLController implements Initializable {
     @FXML
     private PasswordField txt_contrasenanueva;
     
+    
     Image avatar1;
     Image avatar2;
     Image avatar3;
@@ -345,12 +346,11 @@ public class editarFXMLController implements Initializable {
         if(!noValido){
             
             
-            user.setCreditCard(tarjeta);
-            user.setImage(avatar);
-            user.setName(name);
-            user.setNickName(nickName);
+            user.setCreditCard(txt_tarjeta.getText());
+            user.setImage(imagen.getValue().getImage());
+            user.setName(txt_nombre.getText());
             user.setPassword(txt_contrasenanueva.getText());
-            user.setSurname(surname);
+            user.setSurname(txt_apellidos.getText());
             if(!(txt_svc.getText().equals(""))){
                 user.setSvc(Integer.parseInt(txt_svc.getText()));
             }
@@ -411,7 +411,7 @@ public class editarFXMLController implements Initializable {
     }
 
     @FXML
-    private void elegirAvatar(ActionEvent event) {
+    private void elegirAvatar() {
         
       Image img = null;
       ImageView seleccionado = imagen.getValue();
@@ -451,7 +451,7 @@ public class editarFXMLController implements Initializable {
        else if (woman6.equals(seleccionado.getImage())){
            imgAvatar.setImage(woman6);
            }
-  }
+          }
 
     @FXML
     private void examinarImagen(ActionEvent event) {
