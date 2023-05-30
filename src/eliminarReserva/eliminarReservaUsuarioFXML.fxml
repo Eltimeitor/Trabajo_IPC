@@ -56,12 +56,12 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="411.0">
                            <children>
-                              <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Atrás" textAlignment="RIGHT">
+                              <Button fx:id="eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
                                  <HBox.margin>
                                     <Insets bottom="15.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
+                              <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Atrás" textAlignment="RIGHT">
                                  <HBox.margin>
                                     <Insets bottom="15.0" right="10.0" />
                                  </HBox.margin>
