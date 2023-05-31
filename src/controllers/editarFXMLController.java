@@ -124,92 +124,7 @@ public class editarFXMLController implements Initializable {
         
         miembros = club.getMembers();
         
-        
-        
-         ObservableList<ImageView> avatars = FXCollections.observableArrayList();
-         Image Predeterminado; 
-         
-         
-         
-         ImageView view1 = new ImageView();
-         
-         
-         ImageView view2 = new ImageView();
-         
-        
-         ImageView view3 = new ImageView();
-         
-         
-         ImageView view4 = new ImageView();
-         
-         
-         ImageView view5 = new ImageView();
-         
-         
-         ImageView view6 = new ImageView();
-        
-          
-         ImageView view7 = new ImageView();
-         
-          
-         ImageView view8 = new ImageView();
-         
-         
-         ImageView view9 = new ImageView();
-         
-        
-         ImageView view10 = new ImageView();
-         
-          
-         ImageView view11 = new ImageView();
-         
-         try {
-             
-            Predeterminado = new Image(new FileInputStream("src\\resources\\default.png"), 50, 60, false, false);
-            view1.setImage(Predeterminado);
-            
-            avatar1 = new Image(new FileInputStream("src\\resources\\men.png"), 50, 60, false, false);
-            view1.setImage(avatar1);
-           
-            avatar2 = new Image(new FileInputStream("src\\resources\\men2.png"), 50, 60, false, false);
-            view2.setImage(avatar2);
-           
-            avatar3 = new Image(new FileInputStream("src\\resources\\men3.png"), 50, 60, false, false);
-            view3.setImage(avatar3);
-           
-            avatar4 = new Image(new FileInputStream("src\\resources\\men4.png"), 50, 60, false, false);
-            view4.setImage(avatar4);
-            
-            avatar5 = new Image(new FileInputStream("src\\resources\\men5.png"), 50, 60, false, false);
-            view5.setImage(avatar5);
-            
-            woman = new Image(new FileInputStream("src\\resources\\woman.png"), 50, 60, false, false);
-            view6.setImage(woman);
-            
-            woman2 = new Image(new FileInputStream("src\\resources\\woman2.png"), 50, 60, false, false);
-            view7.setImage(woman2);
-            
-            woman3 = new Image(new FileInputStream("src\\resources\\woman3.png"), 50, 60, false, false);
-            view8.setImage(woman3);
-            
-            woman4 = new Image(new FileInputStream("src\\resources\\woman4.png"), 50, 60, false, false);
-            view9.setImage(woman4);
-            
-            woman5 = new Image(new FileInputStream("src\\resources\\woman5.png"), 50, 60, false, false);
-            view10.setImage(woman5);
-            
-            woman6 = new Image(new FileInputStream("src\\resources\\woman6.png"), 50, 60, false, false);
-            view11.setImage(woman6);
-            
-            
-            avatars.addAll(view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11);
-            imagen.setItems(avatars);
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(registroFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-         
+        setCmbobox();  
     }    
 
     @FXML
@@ -451,7 +366,7 @@ public class editarFXMLController implements Initializable {
        else if (woman6.equals(seleccionado.getImage())){
            imgAvatar.setImage(woman6);
            }
-          }
+    }
 
     @FXML
     private void examinarImagen(ActionEvent event) {
@@ -519,7 +434,94 @@ public class editarFXMLController implements Initializable {
         contraVieja = pass;
 
         }
-   
+
+        public void setCmbobox(){
+        ObservableList<ImageView> avatarsv = FXCollections.observableArrayList();
+        imagen.setItems(avatarsv);    
+            
+        ObservableList<ImageView> avatars = FXCollections.observableArrayList();
+         Image Predeterminado; 
+         
+         
+         
+         ImageView view1 = new ImageView();
+         
+         
+         ImageView view2 = new ImageView();
+         
+        
+         ImageView view3 = new ImageView();
+         
+         
+         ImageView view4 = new ImageView();
+         
+         
+         ImageView view5 = new ImageView();
+         
+         
+         ImageView view6 = new ImageView();
+        
+          
+         ImageView view7 = new ImageView();
+         
+          
+         ImageView view8 = new ImageView();
+         
+         
+         ImageView view9 = new ImageView();
+         
+        
+         ImageView view10 = new ImageView();
+         
+          
+         ImageView view11 = new ImageView();
+         
+         try {
+             
+            Predeterminado = new Image(new FileInputStream("src\\resources\\default.png"), 50, 60, false, false);
+            view1.setImage(Predeterminado);
+            
+            avatar1 = new Image(new FileInputStream("src\\resources\\men.png"), 50, 60, false, false);
+            view1.setImage(avatar1);
+           
+            avatar2 = new Image(new FileInputStream("src\\resources\\men2.png"), 50, 60, false, false);
+            view2.setImage(avatar2);
+           
+            avatar3 = new Image(new FileInputStream("src\\resources\\men3.png"), 50, 60, false, false);
+            view3.setImage(avatar3);
+           
+            avatar4 = new Image(new FileInputStream("src\\resources\\men4.png"), 50, 60, false, false);
+            view4.setImage(avatar4);
+            
+            avatar5 = new Image(new FileInputStream("src\\resources\\men5.png"), 50, 60, false, false);
+            view5.setImage(avatar5);
+            
+            woman = new Image(new FileInputStream("src\\resources\\woman.png"), 50, 60, false, false);
+            view6.setImage(woman);
+            
+            woman2 = new Image(new FileInputStream("src\\resources\\woman2.png"), 50, 60, false, false);
+            view7.setImage(woman2);
+            
+            woman3 = new Image(new FileInputStream("src\\resources\\woman3.png"), 50, 60, false, false);
+            view8.setImage(woman3);
+            
+            woman4 = new Image(new FileInputStream("src\\resources\\woman4.png"), 50, 60, false, false);
+            view9.setImage(woman4);
+            
+            woman5 = new Image(new FileInputStream("src\\resources\\woman5.png"), 50, 60, false, false);
+            view10.setImage(woman5);
+            
+            woman6 = new Image(new FileInputStream("src\\resources\\woman6.png"), 50, 60, false, false);
+            view11.setImage(woman6);
+            
+            
+            avatars.addAll(view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11);
+            imagen.setItems(avatars);
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(registroFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     }
     
 
