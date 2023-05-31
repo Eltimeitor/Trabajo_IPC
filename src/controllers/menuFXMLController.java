@@ -83,10 +83,17 @@ public class menuFXMLController implements Initializable {
     
     
     public void init(String log, String pass){
+        try {
+            club = Club.getInstance();
+        } catch (ClubDAOException ex) {
+            Logger.getLogger(menuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(menuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.login = log;
         textouser.setText(login);
         this.contra = pass;
-        user = club.getMemberByCredentials(login, contra);
+        user = club.getMemberByCredentials(log, pass);
         imagenuser.setImage(user.getImage());
     }
 

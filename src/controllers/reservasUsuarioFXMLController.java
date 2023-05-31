@@ -123,9 +123,10 @@ public class reservasUsuarioFXMLController implements Initializable {
     @FXML
    private void inicializarTableView() {
         inicializarTableView(picker.getValue());
+        controller.setPicker(picker.getValue());
     }
     public void inicializarTableView(LocalDate value) {
-
+        picker.setValue(value);
         List<Booking> reservaPista = club.getForDayBookings(value);
 
         ObservableList<ReservasTabla> reservasPista1 = FXCollections.observableArrayList();
@@ -193,11 +194,13 @@ public class reservasUsuarioFXMLController implements Initializable {
     @FXML
     private void eliminarReserva(ActionEvent event) throws IOException {
             
-            
+            inicializarTableView(LocalDate.now()); 
+        
             if(!(controller.getMyStage().isShowing())){
                 controller.init(login, contra, thiscontroller,picker.getValue());
                 stage.setResizable(false);
                 stage.show();
+                eliminar.setVisible(false);
             }
            
             
@@ -237,7 +240,7 @@ public class reservasUsuarioFXMLController implements Initializable {
             
             try {
                 club.removeBooking(aux);
-                inicializarTableViewUsuario();
+                 inicializarTableView(picker.getValue()); 
         } catch (ClubDAOException ex) {
                 Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -252,7 +255,8 @@ public class reservasUsuarioFXMLController implements Initializable {
     }
     public void fechaNoVisible(){
         picker.setVisible(false);
-        fecha_txt.setVisible(false);   
+        fecha_txt.setVisible(false);  
+        eliminar.setVisible(true);
     }
     private boolean fechaCorrecta(Booking b){
         LocalDateTime ldt = LocalDateTime.now().minusHours(24);

@@ -7,6 +7,7 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -20,7 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -135,13 +138,32 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
 
     @FXML
     private void eliminar(ActionEvent event) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
-        LocalTime h = LocalTime.parse(hora.getValue(),dtf);
-        userController.eliminarList(picker.getValue(), pista.getValue(),h);
-        userController.inicializarTableViewUsuario();
-        userController.fechaNoVisible();
-        Stage myStage = (Stage) GoBack.getScene().getWindow();
-        myStage.close();
+        Alert alert = new Alert((Alert.AlertType.CONFIRMATION));
+        alert.setTitle("Reserva");
+        alert.setHeaderText("¿Desea eliminar la reserva de la pista " + pista.getValue() + " a las " + hora.getValue() + "h" + "?");
+        alert.setContentText("No es posible reservar a una hora anterior a la actual\n ni reservar en una fecha anterior a la actual");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+        if (result == ButtonType.OK) {
+            
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+            LocalTime h = LocalTime.parse(hora.getValue(),dtf);
+            userController.eliminarList(picker.getValue(), pista.getValue(),h);
+            if(fechaCorrecta() && horaCorrecta()){
+            Alert alertSI = new Alert((Alert.AlertType.INFORMATION));
+                alertSI.setTitle("Reserva eliminada");
+                alertSI.setHeaderText("Reserva eliminada correctamente");
+                alertSI.setContentText("Reserva de la pista " + pista.getValue() + " a las " + hora.getValue() + "h eliminada correctamente");
+                alertSI.showAndWait();
+            }
+        }else {
+            Alert alertNO = new Alert((Alert.AlertType.INFORMATION));
+                alertNO.setTitle("Error al eliminar reserva");
+                alertNO.setHeaderText("Reserva inexistente");
+                alertNO.setContentText("No exite la reserva que desea eliminar");
+                alertNO.showAndWait();
+        }
+        
+
         
     }
 
@@ -149,5 +171,23 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
     private void inicializarListView() {
         userController.inicializarTableView(picker.getValue());
        
+    }
+    private boolean fechaCorrecta(){
+        LocalDateTime ldt = LocalDateTime.now().minusHours(24);
+        return ldt.toLocalDate().compareTo(picker.getValue()) <= 0;       
+    }
+    
+    private boolean horaCorrecta(){
+        LocalDateTime ldt = LocalDateTime.now().plusHours(24);
+        if(picker.getValue().compareTo(ldt.toLocalDate()) == 0){
+            return ldt.toLocalTime().getHour() < Integer.parseInt(hora.getValue().substring(0,2));
+        }
+        else if(picker.getValue().compareTo(ldt.toLocalDate()) < 0){
+            return false;
+        }
+        return true;
+    }
+    public void setPicker(LocalDate value){
+        picker.setValue(value);
     }
 }

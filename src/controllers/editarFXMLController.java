@@ -264,7 +264,15 @@ public class editarFXMLController implements Initializable {
             user.setCreditCard(txt_tarjeta.getText());
             user.setImage(imagen.getValue().getImage());
             user.setName(txt_nombre.getText());
-            user.setPassword(txt_contrasenanueva.getText());
+            String contra ="";
+            if(!txt_contrasenanueva.getText().isEmpty()){
+                user.setPassword(txt_contrasenanueva.getText());
+                contra = txt_contrasenanueva.getText();
+            }
+            else{
+                user.setPassword(txt_contrasena.getText());
+                contra = txt_contrasena.getText();
+            }
             user.setSurname(txt_apellidos.getText());
             if(!(txt_svc.getText().equals(""))){
                 user.setSvc(Integer.parseInt(txt_svc.getText()));
@@ -274,7 +282,7 @@ public class editarFXMLController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
             Parent root = loader.load();
             perfilFXMLController controller = loader.getController();
-            controller.init(login,txt_contrasenanueva.getText());
+            controller.init(login,contra);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

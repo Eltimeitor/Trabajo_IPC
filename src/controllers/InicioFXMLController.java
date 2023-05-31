@@ -42,7 +42,6 @@ public class InicioFXMLController implements Initializable {
     
     private Club club;
     
-    private Member noUser;
     @FXML
     private HBox arriba;
     /**
@@ -61,11 +60,7 @@ public class InicioFXMLController implements Initializable {
         
         
         
-        try {
-            noUser = club.registerMember("noLog", "noLog", "", "Iniciar Sesion", "noLog", "", 0, null);
-        } catch (ClubDAOException ex) {
-            Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }    
 
     @FXML
@@ -98,8 +93,6 @@ public class InicioFXMLController implements Initializable {
     private void sinSesion(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/verReservas/verReservasFXML.fxml"));   
             Parent root = loader.load();
-            reservasFXMLController controller = loader.getController();
-            controller.init(noUser.getNickName(),noUser.getPassword());
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
